@@ -2,45 +2,60 @@ import os
 import random
 
 def main():
-    monsterDictionary = loadMonsterDictionary()
-
+    os.system("clear")
     print("                        **** Welcome to Fódla ****")
-    print(" ***** For 800 years the huns have ruled and terrorized the people of Fódla *****")
-    print("****** but today on the 113th day of the year the 7 wise men have called for ******")
-    print("         ******* every true born man and women of Fódla to rise ********")
+    print(" *** For 800 years the huns have ruled and terrorized the people of Fódla ***")
+    print("*** but today on the 113th day of the year the 7 wise men have called for ***")
+    print("         *** every true born man and women of Fódla to rise ***")
     input("\n\nPress Enter to continue...")
     os.system("clear")
     floorOne()
-    print(name)
     print("\nCongratulations you won Fódlas independence ! (or there is no more content)")
 
 
 def floorOne():
-    Neirb = {"Neirb": [10, ]}
+    Neirb = {"Neirb": [10,8,6]}
     print("Tomás: Hello there young Fódlian, before you get into Dubh Linn you will need to take out the guard")
     input("\n\nPress Enter to continue...")
     os.system("clear")
     battle(Neirb)
+    mainMenu()
 
 
 def loadMonsterDictionary():
-    md = {"Hun": [20, 3, 6, 0, 4, 5, 10],
-          "Hun Spell Caster": [10, 4, 8, 2, 7, 10, 20]}
+    hun = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
+    hun_spell = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
+    hun_chariot = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
+
+    md = {"Hun": hun,
+          "Hun Spell Caster": hun_spell,
+          "Hun War Chariot": hun_chariot
+          }
+
     return md
 
 
 def mainMenu():
-    move = input("Move (f)oward, (s)kills  or (i)nventory>")
-    return move
+    move = input("Move (f)oward, (s)kills  or (i)nventory> ")
+    if move == "i":
+        printPlayerStats()
+
+
 
 
 def printPlayerStats():
+    md = loadMonsterDictionary()
     os.system("clear")
-    health = 20
-    power = 20
-    luck = 20
-    
-    print("\nStats\n")
+    player = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
+    print(f'''
+Player Stats
+-------------
+Health = {player["health"]} / {player["maxHealth"]}
+Power = {player["Strength"]}
+Luck level = {player["Luck"]}
+
+{md[0]}
+''')
 
 
 
