@@ -1,5 +1,6 @@
 import os
 import random
+import time
 
 def main():
     os.system("clear")
@@ -14,7 +15,7 @@ def main():
 
 
 def floorOne():
-    Neirb = {"Neirb": [10,8,6]}
+    Neirb = {"name": "Neirb", "health": 5, "maxHealth": 5, "Strength": 1, "Luck": 1}
     print("Tomás: Hello there young Fódlian, before you get into Dubh Linn you will need to take out the guard")
     input("\n\nPress Enter to continue...")
     os.system("clear")
@@ -23,9 +24,9 @@ def floorOne():
 
 
 def loadMonsterDictionary():
-    hun = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
-    hun_spell = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
-    hun_chariot = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
+    hun = {"name": "Hun", "health": 20, "maxHealth": 20, "Strength": 1, "Luck": 1}
+    hun_spell = {"name": "Hun Spell Caster","health": 20, "maxHealth": 20, "Strength": 1, "Luck": 1}
+    hun_chariot = {"name": "Hun Armored Chariot","health": 20, "maxHealth": 20, "Strength": 1, "Luck": 1}
 
     md = {"Hun": hun,
           "Hun Spell Caster": hun_spell,
@@ -37,34 +38,45 @@ def loadMonsterDictionary():
 
 def mainMenu():
     move = input("Move (f)oward, (s)kills  or (i)nventory> ")
-    if move == "i":
+    if move == "s":
         printPlayerStats()
 
+def playerStats():
+    player = {"health": 20, "maxHealth": 20, "Strength": 1, "Luck": 1, "XP": 0}
+    return player
 
+def level():
+    XP = playerStats()
+    lvl = round(XP["XP"] / 100)
+    return lvl
 
 
 def printPlayerStats():
-    md = loadMonsterDictionary()
+    stats = playerStats()
     os.system("clear")
-    player = {"health": [20], "maxHealth": [20], "Strength": [1], "Luck": [1]}
     print(f'''
 Player Stats
 -------------
-Health = {player["health"]} / {player["maxHealth"]}
-Power = {player["Strength"]}
-Luck level = {player["Luck"]}
-
-{md[0]}
+Health = {stats["health"]} / {stats["maxHealth"]}
+Power = {stats["Strength"]}
+Luck level = {stats["Luck"]}
 ''')
-
-
-
 
 def battle(md):
     mKey = md
-    if mKey == "Hun Sniper":
-        print("")
-    print("\nYou have encountered a", mKey)
+    ps = playerStats()
+    while ps["health"] > 0:
+        if mKey == "Hun Sniper":
+            print("*ping* a long range spell hits you dealing 10 damage")
+            ps.update({health: 10})
+            if ps["health"] <= 0:
+                death()
+            print("Health now equals " + ps["health"])
+        else:
+            print("\nYou have encountered a", mKey[name])
+    if ps["health"] <0:
+        death()
+
 
 
 def selectMonster(md):
@@ -80,6 +92,18 @@ def selectMonster(md):
         highpoint = highpoint + m[1]
         if selection < highpoint:
             return m[0]
+def special_attacks():
+    sunBurst = {"unlocked": false, "DO": 10, "mana": 30}
+    ladies = {"unlocked": false, "DO": 30, "mana": 40}
+    volunteers = {"unlocked": false, "DO": 80, "mana": 80}
+    mellowDivision = {"unlocked": false, "DO": 50, "mana": 60}
+    mrCoileáin = {"unlocked": false, "DO": 100, "mana": 130}
+    secondaries = {"Sun Burst": sunBurst, "Cummann & mBan": ladies, "Fódla Volunteers": volunteers, "mellow": mellowDivision, "Collins": mrCoileáin}
+    return secondaries
 
-
+def death():
+    print(f"have died. at lvl " + str(level()))
+    time.sleep(10)
+    os.system("clear")
+    quit()
 main()
