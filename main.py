@@ -65,6 +65,8 @@ Luck level = {stats["Luck"]}
 def battle(md):
     mKey = md
     ps = playerStats()
+    sta = standard_attacks()
+    sA = special_attacks()
     while ps["health"] > 0:
         if mKey == "Hun Sniper":
             print("*ping* a long range spell hits you dealing 10 damage")
@@ -74,11 +76,9 @@ def battle(md):
             print("Health now equals " + ps["health"])
         else:
             print("\nYou have encountered a", mKey[name])
+
     if ps["health"] <0:
         death()
-
-
-
 def selectMonster(md):
     allMonsters = []
     for key in md:
@@ -92,6 +92,13 @@ def selectMonster(md):
         highpoint = highpoint + m[1]
         if selection < highpoint:
             return m[0]
+def standard_attacks():
+    short = {"unlocked": true, "DO": 5, name: "short sword"}
+    zwei = {"unlocked": false, "DO": 30, name: "claidheamh mòr"}
+    bow = {"unlocked": false, "DO": 8, name: "Bow And Arrow"}
+    light = {"unlocked": false, "DO": 500, name: "Claidheamh Soluis"}
+    standard = {"short": short, "zwei": zwei, "bow": bow, "light": light}
+    return standard
 def special_attacks():
     sunBurst = {"unlocked": false, "DO": 10, "mana": 30}
     ladies = {"unlocked": false, "DO": 30, "mana": 40}
@@ -100,7 +107,24 @@ def special_attacks():
     mrCoileáin = {"unlocked": false, "DO": 100, "mana": 130}
     secondaries = {"Sun Burst": sunBurst, "Cummann & mBan": ladies, "Fódla Volunteers": volunteers, "mellow": mellowDivision, "Collins": mrCoileáin}
     return secondaries
-
+def shop():
+    cash = wallet()
+    os.system("clear")
+    print("Muammar: Hello my friend! I have many fine wares for you to keep killing the huns!")
+    initial = input("Muammar: so what do you need? (w)epons,(s)pecial wepons or (p)otions")
+    while (initial != "w" and initial != "s" and initial != "p" and initial != "midas"):
+        initial = input("Muammar: so what do you need? (w)epons,(s)pecial wepons or (p)otions")
+    if initial == "w":
+        print()
+    elif initial == "s":
+        print()
+    elif initial == "p":
+        print()
+    elif initial == "midas":
+        print()
+def wallet():
+    wallet = 0
+    return wallet
 def death():
     print(f"have died. at lvl " + str(level()))
     time.sleep(10)
