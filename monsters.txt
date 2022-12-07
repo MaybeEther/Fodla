@@ -1,0 +1,11 @@
+#MonsterClass;Name;health;max_health;strength;luck
+Monster1;Neirb;5;5;1;1
+Monster2;Hun;20;20;1;1
+Monster3;Hun Spell Caster;30;40;1;1
+Monster4;Hun War Cart;50;40;1;1
+Monster5;Maxwell The Hun;50;50;1;1
+Monster6;Nathen The Hun;50;11;1;1
+Monster7;French The Hun;50;50;1;1
+Monster8;Friend The Hun;50;10;1;1
+Monster9;Lowe The Hun;50;20;1;1
+Monster10;Wimborne The Hun;100;100;1;1
